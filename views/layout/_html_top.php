@@ -9,17 +9,28 @@
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" /><!-- SETS THE BOOKMARK ICON (iOs) -->
     <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon.png" /><!-- SETS THE BOOKMARK ICON (Android) -->
     <meta name="title" content="<?=$title?>" />
+
+	<? if (isset($meta)): ?>
+	<!-- Custom Meta Tags -->
+	<? foreach ($meta as $mtag): ?>
+	<meta<?= isset($mtag['name']) ? ' name="'.$mtag['name'].'"' : '' ?><?= isset($mtag['property']) ? ' property="' . $mtag['property'] . '"' : '' ?> content="<?=$mtag['content']?>" />
+	<? endforeach ?>
+	<? endif ?>
 	
     <title><?=$title?></title>
     <link rel="shortcut icon" href="/img/.ico" />
     
-    <? foreach ($css as $style): ?>
-    <link rel="stylesheet" type="text/css" href="<?=$style?>" />
-    <? endforeach ?>
-    
-    <? foreach ($js as $script): ?>
-    <script  type="text/javascript" src="<?=$script?>"></script>
-    <? endforeach ?>
+    <? if (isset($css)): ?>
+	<? foreach($css as $style): ?>
+	<link rel="stylesheet" type="text/css" href="<?= $style ?>" />
+	<? endforeach ?>
+	<? endif ?>
+
+	<? if (isset($js)): ?>
+	<? foreach ($js as $script): ?>
+	<script  type="text/javascript" src="<?= $script ?>"></script>
+	<? endforeach ?>
+	<? endif ?>
     
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
